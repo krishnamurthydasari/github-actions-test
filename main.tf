@@ -7,19 +7,12 @@ terraform {
   }
 }
 
-variable "names" {
-  type    = list(string)
-  default = ["test0", "test1", "test2", "test3"]
-}
-
-resource "null_resource" "test" {
-  for_each = toset(var.names)
-  triggers = {
-    list_index = each.key
-    list_value = each.value
-  }
-}
+resource "null_resource" "example" {
+      triggers = {
+        value = "A example resource that does nothing!"
+      }
+    }
 
 output "null_resource_output" {
-  value = null_resource.test
+  value = null_resource.example
 }
